@@ -1,5 +1,4 @@
 <?php
-// strict mode
 declare(strict_types=1);
 namespace models;
 
