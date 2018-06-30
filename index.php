@@ -15,7 +15,6 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,9 +24,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
   <link rel="stylesheet" type="text/css" href="public/css/imagehover.min.css">
   <link rel="stylesheet" type="text/css" href="public/css/style.css">
 </head>
-
 <body>
-  <!--Navigation bar-->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -43,27 +40,32 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
           <li><a href="">Trainings</a></li>
           <li><a href="">Interns</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li class="btn-trial"><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li>
-          <li class="btn-trial"><a href="#" data-target="#register" data-toggle="modal">Register</a></li>
+          <?php if ($user->getId()):?>
+            <li class="btn-trial"><a href="#" data-target="#profile">Hello <?= $user->getName()?> </a></li>
+            <li class="btn-trial"><a href="app/views/logout.php">Logout</a></li>
+          <?php else: ?>
+            <li class="btn-trial"><a href="#login" data-target="#login" data-toggle="modal">Sign in</a></li>
+            <li class="btn-trial"><a href="#register" data-target="#register" data-toggle="modal">Register</a></li>
+          <?php endif?>
         </ul>
       </div>
     </div>
   </nav>
-  <!--/ Navigation bar-->
   <?php
-      include "app/views/login.php";
-      include "app/views/register.php";
-      include "app/views/banner.php";
-      include "app/views/features.php";
-      include "app/views/workshop.php";
-      include "app/views/testimonial.php";
-      include "app/views/conferences.php";
-      include "app/views/contact.php";
-      include "app/views/footer.php";
-    ?>
+    include "app/views/login.php";
+    include "app/views/register.php";
+    include "app/views/banner.php";
+    include "app/views/features.php";
+    include "app/views/workshop.php";
+    include "app/views/testimonial.php";
+    include "app/views/conferences.php";
+    include "app/views/contact.php";
+    include "app/views/footer.php";
+  ?>
   <script src="public/js/jquery.min.js"></script>
   <script src="public/js/jquery.easing.min.js"></script>
   <script src="public/js/bootstrap.min.js"></script>
   <script src="public/js/custom.js"></script>
+  <script src="public/js/main.js"></script>
 </body>
 </html>

@@ -1,13 +1,16 @@
-  <!--Contact-->
-  <section id="contact" class="section-padding">
+ <section id="contact" class="section-padding">
     <div class="container">
       <div class="row">
         <div class="header-section text-center">
           <h2>Contact Us</h2>
         </div>
-        <div id="sendmessage">Your message has been sent. Thank you!</div>
-        <div id="errormessage"></div>
-        <form action="" method="post" role="form" class="contactForm">
+          <div id="sendmessage" style="display: <?php echo $_GET['message'] == 'success' ? 'block' : 'none' ?>">
+            Your message has been sent. Thank you!
+          </div>
+          <div id="errormessage" style="display: <?php echo $_GET['message'] == 'error' ? 'block' : 'none' ?>">
+            Your message has not been sent. Try again!
+          </div>
+        <form action="app/controllers/contact.php" method="post" role="form" class="contactForm">
           <div class="col-md-6 col-sm-6 col-xs-12 left">
             <div class="form-group">
               <input type="text" name="name" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
@@ -32,8 +35,6 @@
             <button type="submit" id="submit" name="submit" class="form contact-form-button light-form-button oswald light">SEND EMAIL</button>
           </div>
         </form>
-
       </div>
     </div>
   </section>
-  <!--/ Contact-->

@@ -9,7 +9,6 @@ $user = new User('', $_POST['password']);
 $user->setEmail($_POST['email']);
 
 $exists = $user->load();
-
 if ($exists)
 {
     $_SESSION['id'] = $user->getId();
@@ -17,7 +16,7 @@ if ($exists)
 }
 else
 {
-    header('Location: ../login.php?exists=0');
+    header('Location: ../../index.php?exists=0');
 }
 
 

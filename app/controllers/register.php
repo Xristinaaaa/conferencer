@@ -16,5 +16,5 @@ if ($success)
 }
 else
 {
-    header('Location: ../register.php?exists=true');   
+    header('Location: ../../index.php?exists=true#register');   
 }

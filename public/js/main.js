@@ -58,6 +58,17 @@ const listeners = {
     }
 };
 
+$(document).ready(function () {          
+    setTimeout(function() {
+        $('#sendmessage').hide();
+    }, 3000);
+});
+$(document).ready(function () {
+    setTimeout(function() {
+        $('#errormessage').hide();
+    }, 3000);
+})
+
 window.onload = () => {
     document.querySelector('#login_form').addEventListener('submit', listeners.loginSubmitted);
 };
