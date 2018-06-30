@@ -138,9 +138,6 @@ Banner
 	color: #fff;
 	margin-top: 30px;
 }
-.quote .btn{
-    background-color:
-}
 .modal-dialog {
     width: 600px;
     margin: 150px auto;
@@ -660,7 +657,7 @@ Footer
     width: 24%;
     padding: 10px 10px;
     margin-bottom: 15px;
-    color: #fff;: #fafafa;
+    color: #fff #fafafa;
     border: 1px solid rgba(119, 81, 81, 0.34);
     width: 24%;
     margin-bottom: 15px;
@@ -777,4 +774,9 @@ Responsive media queries
     .navbar-default .navbar-nav > li > a{
         text-align: center;
     }
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
 }

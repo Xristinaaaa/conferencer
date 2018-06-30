@@ -1,5 +1,4 @@
 (function($) {
-
   // Navigation scrolls
   $(".navbar-nav li a").on('click', function(event) {
     $('.navbar-nav li').removeClass('active');

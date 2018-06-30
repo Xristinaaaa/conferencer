@@ -11,6 +11,9 @@ class User
     private $email;
     private $password;
     private $registeredOn;
+    private $avatarUrl;
+    private $role;
+    private $deleted;
     
     public function __construct(string $name, string $password = null)
     {
@@ -61,6 +64,16 @@ class User
         $this->name = $name;
     }
     
+    public function getAvatar()
+    {
+        return $this->avatarUrl;
+    }
+    
+    public function setAvatar($avatarUrl)
+    {    
+        $this->avatarUrl = $avatarUrl;
+    }
+
     public function load() :bool
     {
         $stmt = [];
@@ -84,7 +97,10 @@ class User
         $this->id           = $dbUser['id'];
         $this->name         = $dbUser['name'];
         $this->email        = $dbUser['email'];
-        $this->registeredOn = $dbUser['name'];
+        $this->registeredOn = $dbUser['registered_on'];
+        $this->avatarUrl = $dbUser['avatar_url'];
+        $this->role = $dbUser['role'];
+        $this->deleted = $dbUser['deleted'];
         
         return !!$dbUser;
     }
@@ -101,8 +117,8 @@ class User
             return false;
         }
         
-        $stmt = (new Db())->getConn()->prepare("INSERT INTO `users` (name, email, password) VALUES (?, ?, ?) ");
-        return $stmt->execute([$this->name, $this->email, $this->password]);
+        $stmt = (new Db())->getConn()->prepare("INSERT INTO `users` (name, email, password, avatar_url, role) VALUES (?, ?, ?, ?, ?) ");
+        return $stmt->execute([$this->name, $this->email, $this->password,  $this->avatarUrl, $this->role]);
     }
     
     public static function fetchAll()
@@ -118,6 +134,8 @@ class User
             $userObject = new User($user['name']);
             $userObject->setId($user['id']);
             $userObject->setRegisteredOn($user['registered_on']);
+            $userObject->setEmail($user['email']);
+            $userObject->setAvatar($user['avatar_url']);
             $users[] = $userObject;
         }
         

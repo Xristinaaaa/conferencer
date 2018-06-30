@@ -14,37 +14,33 @@
                     There is already such email!
                 <?php endif?>
                 <div class="form-group has-feedback">
-                  <!----- username -------------->
-                  <input class="form-control" placeholder="Username" id="registerusername" name="name" type="text" autocomplete="off" />
-                  <span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
-                  <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                  <!-- username -->
+                  <input class="form-control" placeholder="Username" id="registerUsername" name="name" type="text" 
+                    autocomplete="off" required/>
+                  <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group has-feedback">
-                  <!----- email -------------->
-                  <input class="form-control" placeholder="Email" id="refisteremail" name="email" type="text" autocomplete="off" />
-                  <span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
-                  <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                  <!-- email -->
+                  <input class="form-control" placeholder="Email" id="registerEmail" name="email" type="text" 
+                    autocomplete="off" required data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group has-feedback">
-                  <!----- password -------------->
-                  <input class="form-control" placeholder="Password" id="registerpsw" name="password" type="password" autocomplete="off" />
-                  <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
-                  <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  <!-- password -->
+                  <input class="form-control" data-minlength="6" placeholder="Password" id="registerPsw" name="password" type="password" 
+                  autocomplete="off" required/>
+                  <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group has-feedback">
-                  <!----- password -------------->
-                  <input class="form-control" placeholder="Confirm Password" id="confirmpsw" type="password" autocomplete="off" />
-                  <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
-                  <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  <!-- confirm password -->
+                  <input class="form-control" placeholder="Confirm Password" id="confirmPsw" data-match="#registerPsw" 
+                    data-match-error="Whoops, these don't match" type="password" autocomplete="off" required/>
+                  <div class="help-block with-errors"></div>
                 </div>
                 <div class="row">
                   <div class="col-xs-12">
                     <input type="reset" class="btn btn-green btn-block"  value="Clear" />
-                    <input type="submit" class="btn btn-green btn-block btn-flat"  value="Register" />
+                    <input id="register-button" type="submit" class="btn btn-green btn-block btn-flat"  value="Register" />
                   </div>
                 </div>
               </form>

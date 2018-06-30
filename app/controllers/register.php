@@ -9,9 +9,11 @@ $user = new User($_POST['name'], $_POST['password']);
 $user->setEmail($_POST['email']);
 
 $success = $user->insert();
+$exists = $user->load();
 
 if ($success)
 {
+    $_SESSION['id'] = $user->getId();
     header('Location: ../../index.php');
 }
 else

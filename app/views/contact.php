@@ -6,9 +6,11 @@
         </div>
           <div id="sendmessage" style="display: <?php echo $_GET['message'] == 'success' ? 'block' : 'none' ?>">
             Your message has been sent. Thank you!
+            <?php unset($_SESSION['message']); ?>
           </div>
           <div id="errormessage" style="display: <?php echo $_GET['message'] == 'error' ? 'block' : 'none' ?>">
             Your message has not been sent. Try again!
+            <?php unset($_SESSION['message']); ?>       
           </div>
         <form action="app/controllers/contact.php" method="post" role="form" class="contactForm">
           <div class="col-md-6 col-sm-6 col-xs-12 left">
