@@ -36,6 +36,27 @@ class Category
         $this->name = $name;
     }
 
+    public function getByName() :bool
+    {
+        $stmt = [];
+        if($this->name) 
+        {
+            $stmt = (new Db())->getConn()->prepare("SELECT * FROM `categories` WHERE name = ?");
+            $result = $stmt->execute([$this->name]);
+        } else
+        {
+            throw new \Exception('Cannot load category');
+        }
+
+        $dbCategory = $stmt->fetch();
+        
+        $this->id           = $dbCategory['id'];
+        $this->name         = $dbCategory['name'];
+        $this->deleted      = $dbCategory['deleted'];
+        
+        return !!$dbCategory;
+    }
+
     public function load() :bool
     {
         $stmt = [];

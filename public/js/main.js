@@ -86,12 +86,32 @@ $(document).ready(function () {
         $('#sendmessage').hide();
     }, 3000);
 });
+
 $(document).ready(function () {
     setTimeout(function() {
         $('#errormessage').hide();
     }, 3000);
-})
+});
 
 window.onload = () => {
     $('#login_form').on('submit', listeners.loginSubmitted);
 };
+
+$('.datepicker').each(function () {
+    $(this).datepicker({
+        dateFormat: 'yy-mm-dd',
+        constrainInput: false
+    });
+});
+
+$('#country-drop-down').change(function() {
+    let country = $(this).find(":selected").attr("id");
+    $('#city-drop-down option').each(function() {
+        if (country !== $(this).attr('country')){
+            $(this).hide();
+        }
+        else {
+            $(this).show();
+        }
+    });
+});

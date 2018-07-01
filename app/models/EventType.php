@@ -36,6 +36,27 @@ class EventType
         $this->name = $name;
     }
 
+    public function getByName() :bool
+    {
+        $stmt = [];
+        if($this->name) 
+        {
+            $stmt = (new Db())->getConn()->prepare("SELECT * FROM `eventtypes` WHERE name = ?");
+            $result = $stmt->execute([$this->name]);
+        } else
+        {
+            throw new \Exception('Cannot load event type');
+        }
+
+        $dbEventType = $stmt->fetch();
+        
+        $this->id           = $dbEventType['id'];
+        $this->name         = $dbEventType['name'];
+        $this->deleted      = $dbEventType['deleted'];
+        
+        return !!$dbEventType;
+    }
+
     public function load() :bool
     {
         $stmt = [];

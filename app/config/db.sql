@@ -49,6 +49,7 @@ CREATE TABLE `events` (
   `description` varchar(4000),
   `eventTypeId` int(11) NOT NULL, 
   `categoryId` int(11) NOT NULL,
+  `city` varchar(1000),
   `lecturer` varchar(100),
   `capacity` int,
   `price` decimal,

@@ -20,14 +20,13 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
   <link rel="stylesheet" type="text/css" href="../../public/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../../public/css/imagehover.min.css">
-  <link rel="stylesheet" type="text/css" href="../../public/css/responsive.css">
   <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
 </head>
-<body>
+<body class="page-container">
   <?php
     include "navbar.php";
   ?>
-  <div id="profile" class="container col-centered">
+  <div id="profile" class="container section-padding col-centered">
     <div class="row">
         <h1><?= $user->getName()?>'s profile</h1>
     </div>
@@ -36,15 +35,9 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
             <div class="form-box">
                 <div class="form-top">
                     <img src="../../public/uploads/avatar.jpg" id="profile-avatar">
-                    <div class="btn-wrap">
-                        <a class="btn btn-green" href="/profile/avatar">Change your avatar</a>
-                    </div>
+                    <button class="btn btn-trial btn-green"><a href="#" data-target="#profileAvatar" data-toggle="modal">Change your avatar</a></button>
                 </div>
             <div class="form-bottom">
-            <div class="alert alert-danger" id="error-container">
-                <strong>The following errors need to be corrected:</strong>
-                <ul></ul>
-            </div>
             <form class="profile-form" role="form" action="" method="post" id="user-profile-form">
                 <div class="form-group">
                     <label for="form-email">Email</label>
@@ -61,6 +54,9 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
         </div>
     </div>
   </div>
+  <?php 
+    include "profileAvatar.php";
+  ?>
   <script src="../../public/js/jquery.min.js"></script>
   <script src="../../public/js/jquery.easing.min.js"></script>
   <script src="../../public/js/bootstrap.min.js"></script>

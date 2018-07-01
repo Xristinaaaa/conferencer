@@ -16,7 +16,7 @@ if ($exists)
 }
 else
 {
-    header('Location: ../../index.php');
+    header('Location: ../../index.php?exists=true#login');
 }
 
 

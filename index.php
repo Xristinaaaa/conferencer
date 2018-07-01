@@ -22,7 +22,6 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
   <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="public/css/imagehover.min.css">
-  <link rel="stylesheet" type="text/css" href="public/css/responsive.css">
   <link rel="stylesheet" type="text/css" href="public/css/style.css">
 </head>
 <body>

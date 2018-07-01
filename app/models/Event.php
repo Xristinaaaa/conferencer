@@ -3,12 +3,14 @@ declare(strict_types=1);
 namespace models;
 
 use libs\Db;
+use models\EventType;
 
 class Event
 {
     private $id;
     private $name;
     private $createdOn;
+    private $city;
     private $startDate;
     private $endDate;
     private $location;
@@ -147,6 +149,16 @@ class Event
         $this->capacity = $capacity;
     }
 
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    public function setCity($city)
+    {    
+        $this->city = $city;
+    }
+
     public function getPrice()
     {
         return $this->price;
@@ -174,38 +186,31 @@ class Event
         $this->id           = $dbEvent['id'];
         $this->name         = $dbEvent['name'];
         $this->deleted      = $dbEvent['deleted'];
-        $this->$createdOn;  = $dbEvent['created_on'];
-        $this->$startDate;  = $dbEvent['start_date'];
-        $this->$endDate;    = $dbEvent['end_date'];
-        $this->$location;   = $dbEvent['location'];
-        $this->$coverUrl;   = $dbEvent['cover_url'];
-        $this->$description; = $dbEvent['description'];
-        $this->$eventTypeId; = $dbEvent['eventTypeId'];
-        $this->$categoryId; = $dbEvent['categoryId'];
-        $this->$lecturer;   = $dbEvent['lector'];
-        $this->$capacity;   = $dbEvent['capacity'];
-        $this->$price;      = $dbEvent['price'];
+        $this->$createdOn   = $dbEvent['created_on'];
+        $this->$startDate   = $dbEvent['start_date'];
+        $this->$endDate     = $dbEvent['end_date'];
+        $this->$location    = $dbEvent['location'];
+        $this->$coverUrl    = $dbEvent['cover_url'];
+        $this->$description = $dbEvent['description'];
+        $this->$eventTypeId = $dbEvent['eventTypeId'];
+        $this->$categoryId  = $dbEvent['categoryId'];
+        $this->$lecturer    = $dbEvent['lector'];
+        $this->$capacity    = $dbEvent['capacity'];
+        $this->$city        = $dbEvent['city'];
+        $this->$price       = $dbEvent['price'];
 
         return !!$dbEvent;
     }
     
     public function insert()
     {
-        $existingEvent = new Event('');
-        $existingEvent->setName($this->name);
-        $existingEvent->load();
+        $existingEvent = new Event($this->name);
         
-        if ($existingEvent->id)
-        {
-            // event exists
-            return false;
-        }
-        
-        $stmt = (new Db())->getConn()->prepare("INSERT INTO `events` (name, creаted_on, start_date, end_date, location,
-         cover_url, description, eventTypeId, categoryId, lector, capacity, price, deleted) 
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+        $stmt = (new Db())->getConn()->prepare("INSERT INTO `events` (name, created_on, start_date, end_date, location,
+         cover_url, description, eventTypeId, categoryId, lector, capacity, price, deleted, city) 
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
         return $stmt->execute([$this->name, $this->createdOn, $this->startDate, $this->endDate, $this->location, $this->coverUrl, 
-            $this->description, $this->eventTypeId, $this->categoryId, $this->lecturer, $this->capacity, $this->price, 0]);
+            $this->description, $this->eventTypeId, $this->categoryId, $this->lecturer, $this->capacity, $this->price, 0, $this->city]);
     }
     
     public static function fetchAll()
@@ -231,10 +236,42 @@ class Event
             $eventObject->setLecturer($event['lector']);
             $eventObject->setCapacity($event['capacity']);
             $eventObject->setPrice($event['price']);
+            $eventObject->setCity($event['city']);
             $events[] = $eventObject;
         }
         
         return $events;
+    }
+ 
+    public static function fetchAllConferences()
+    {
+        $eventType = new EventType("Conference");
+        $eventType->getByName();
+        $stmt = (new Db())->getConn()->prepare("SELECT * FROM `events` WHERE eventTypeId = ? ORDER BY name DESC");
+        $result = $stmt->execute([$eventType->getId()]);
+        
+        $conferences = [];
+        
+        while ($conf = $stmt->fetch())
+        {
+            $confObject = new Event($conf['name']);
+            $confObject->setId($conf['id']);
+            $confObject->setCreatedOn($conf['created_on']);
+            $confObject->setStartDate($conf['start_date']);
+            $confObject->setEndDate($conf['end_date']);
+            $confObject->setLocation($conf['location']);
+            $confObject->setCoverUrl($conf['cover_url']);
+            $confObject->setDescription($conf['description']);
+            $confObject->setEventTypeId($conf['eventTypeId']);
+            $confObject->setCategoryId($conf['categoryId']);
+            $confObject->setLecturer($conf['lector']);
+            $confObject->setCapacity($conf['capacity']);
+            $confObject->setPrice($conf['price']);
+            $confObject->setCity($conf['city']);
+            $conferences[] = $confObject;
+        }
+        
+        return $conferences;
     }
   }
 ?>
