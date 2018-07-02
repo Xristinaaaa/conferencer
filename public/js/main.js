@@ -99,7 +99,8 @@ window.onload = () => {
 
 $('.datepicker').each(function () {
     $(this).datepicker({
-        dateFormat: 'yy-mm-dd',
+        timeFormat: "HH:mm:ss",
+        dateFormat: "yy-mm-dd",
         constrainInput: false
     });
 });

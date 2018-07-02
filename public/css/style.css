@@ -756,9 +756,16 @@ body {
 
 .page-container {
     padding-top: 50px;
-    background: url('../img/conf.jpg') no-repeat;
+    background: url('../img/conf.jpg') repeat;
     background-size: cover; 
 }
+
+.details-container {
+    padding-top: 50px;
+    background-image: url('../img/abs.jpg');
+    background: center cover;
+}
+
 .dropdown {
     display: inline-block;
     width: auto;

@@ -12,10 +12,11 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
     $user->load();
 }
 
-$target_dir = "/conferencer/app/public/uploads/";
+$target_dir = "../../public/uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -48,8 +49,9 @@ if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], basename($_FILES["fileToUpload"]["name"]))) {
-        $user->setAvatar(basename($_FILES["fileToUpload"]["name"]));
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . basename($_FILES["fileToUpload"]["name"]))) {
+        $user->uploadAvatar($user->getId(), $target_dir . basename($_FILES["fileToUpload"]["name"]));
+        $user->load();
         header('Location: ../views/profile.php');
     } else {
         echo "Sorry, there was an error uploading your file.";

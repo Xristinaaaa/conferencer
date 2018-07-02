@@ -121,6 +121,18 @@ class User
         return $stmt->execute([$this->name, $this->email, $this->password,  $this->avatarUrl, $this->role]);
     }
     
+    public static function uploadAvatar($id, $avatarUrl)
+    {
+        $stmt = (new Db())->getConn()->prepare("UPDATE `users` SET avatar_url=? WHERE id=?");
+        return $stmt->execute([$avatarUrl, $id]);
+    }
+
+    public static function updateInfo($id, $name, $email)
+    {
+        $stmt = (new Db())->getConn()->prepare("UPDATE `users` SET name=?, email=? WHERE id=?");
+        return $stmt->execute([$name, $email, $id]);
+    }
+
     public static function fetchAll()
     {
         $stmt = (new Db())->getConn()->prepare("SELECT * FROM `users` ORDER BY registered_on DESC");

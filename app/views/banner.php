@@ -9,7 +9,7 @@
           <div class="intro-para text-center quote">
             <p class="big-text">Learning Today . . . Leading Tomorrow.</p>
             <p class="small-text">Learn about new student conferences near you and subscribe with ease...</p>
-            <a href="#conferences" class="btn get-quote">Discover</a>
+            <a href="/conferencer/app/views/conferences.php" class="btn get-quote">Discover</a>
           </div>
           <a href="#feature" class="mouse-hover">
             <div class="mouse"></div>

@@ -186,18 +186,18 @@ class Event
         $this->id           = $dbEvent['id'];
         $this->name         = $dbEvent['name'];
         $this->deleted      = $dbEvent['deleted'];
-        $this->$createdOn   = $dbEvent['created_on'];
-        $this->$startDate   = $dbEvent['start_date'];
-        $this->$endDate     = $dbEvent['end_date'];
-        $this->$location    = $dbEvent['location'];
-        $this->$coverUrl    = $dbEvent['cover_url'];
-        $this->$description = $dbEvent['description'];
-        $this->$eventTypeId = $dbEvent['eventTypeId'];
-        $this->$categoryId  = $dbEvent['categoryId'];
-        $this->$lecturer    = $dbEvent['lector'];
-        $this->$capacity    = $dbEvent['capacity'];
-        $this->$city        = $dbEvent['city'];
-        $this->$price       = $dbEvent['price'];
+        $this->createdOn   = $dbEvent['created_on'];
+        $this->startDate   = $dbEvent['start_date'];
+        $this->endDate     = $dbEvent['end_date'];
+        $this->location    = $dbEvent['location'];
+        $this->coverUrl    = $dbEvent['cover_url'];
+        $this->description = $dbEvent['description'];
+        $this->eventTypeId = $dbEvent['eventTypeId'];
+        $this->categoryId  = $dbEvent['categoryId'];
+        $this->lecturer    = $dbEvent['lector'];
+        $this->capacity    = $dbEvent['capacity'];
+        $this->city        = $dbEvent['city'];
+        $this->price       = $dbEvent['price'];
 
         return !!$dbEvent;
     }
@@ -247,7 +247,7 @@ class Event
     {
         $eventType = new EventType("Conference");
         $eventType->getByName();
-        $stmt = (new Db())->getConn()->prepare("SELECT * FROM `events` WHERE eventTypeId = ? ORDER BY name DESC");
+        $stmt = (new Db())->getConn()->prepare("SELECT * FROM `events` WHERE eventTypeId = ? ORDER BY name");
         $result = $stmt->execute([$eventType->getId()]);
         
         $conferences = [];

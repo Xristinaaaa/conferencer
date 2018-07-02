@@ -80,14 +80,13 @@ $conferences = Event::fetchAllConferences();
       <div class="row grid">
       <?php 
       foreach($conferences as $conference) { ?>
-        <div class="col-md-4 col-sm-6 <?= $conference->getCategoryId() ?>">      
+        <div class="col-md-4 form-group col-sm-6 <?= $conference->getCategoryId() ?>">      
           <div class="service-box">
               <img src="<?= $conference->getCoverUrl() ?>" width='100%' height='130px' alt="">
               <div class="card-body">
                 <h4 class="card-title">
-                    <a href="#"><?= $conference->getName() ?></a>
+                    <a href="conferenceDetails.php?id=<?= $conference->getId() ?>"><?= $conference->getName() ?></a>
                 </h4>
-                <p class="card-text"><?= $conference->getDescription() ?></p>
               </div>
           </div>
         </div>
