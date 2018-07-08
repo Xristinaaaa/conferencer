@@ -10,6 +10,9 @@ if (isset($_SESSION['id']) && $_SESSION['id'])
 {
     $user->setId($_SESSION['id']);
     $user->load();
+
+} else {
+    header('Location: ../../index.php');
 }
 ?>
 <!DOCTYPE html>

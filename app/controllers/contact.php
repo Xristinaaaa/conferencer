@@ -32,6 +32,6 @@ try {
     header('Location: ../../index.php?message=success#contact');
 } catch (Exception $e) {
     header('Location: ../../index.php?message=failure#contact');
-    //echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+    
 }
 ?>
